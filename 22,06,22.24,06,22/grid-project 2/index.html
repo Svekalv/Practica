@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/css.css" />
+  </head>
+  <body>
+    <div id="grid-cont">
+      <div class="elementoGrid" id="numero-1"></div>
+      <div class="elementoGrid" id="numero-2"></div>
+      <div class="elementoGrid" id="numero-3"></div>
+      <div class="elementoGrid" id="numero-4"></div>
+    </div>
+    <div id="elements">
+      <div id="columna">
+        <label for="column">Columnas</label>
+        <input type="number" id="column" name="columna" value="2"/>
+      </div>
+      <div id="fila">
+        <label for="row">Filas:</label>
+        <input type="number" id="row" name="fila" value="2"/>
+      </div>
+        <button onclick="seleccionar()">Seleccionar</button>
+        <div class="selection-area"></div>
+        <script src="js/js.js"></script>
+    </div>
+  </body>
+</html>

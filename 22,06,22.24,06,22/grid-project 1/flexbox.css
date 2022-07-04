@@ -1,0 +1,19 @@
+.flex-container {
+    display: flex;
+    background-color: #1e90ff;
+    flex-wrap: wrap;
+    height: 200px;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  
+  .flex-container > div {
+    background-color: #f1f1f1;
+    margin: 10px;
+    padding: 20px;
+    font-size: 30px;
+  }
+
+ .divflex {
+    height: 70%;
+  }

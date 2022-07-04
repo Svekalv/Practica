@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/grid.css" />
+    <!-- direccion del archico css-->
+  </head>
+  <body>
+    <div id="grid-container"></div>
+    <!--creacion de div con id para el contenedor de la grilla-->
+    <div style="top: 10%; right: 3%; width: 25%; position: fixed">
+      <!--posicionamiento del label, textbox y button haciendo uso de divisiones-->
+        <div id="column">
+          <label for="columna">Columnas:</label>
+          <input type="number" id="columna" name="columna" />
+        </div>
+        <div id="row">
+          <label for="fila">Filas:</label>
+          <input type="number" id="fila" name="fila" />
+        </div>
+        <button
+          style="position: fixed; right: 15%; top: 10"
+          onclick="seleccionar()"
+        >
+          Seleccionar
+        </button>
+    </div>
+
+    <script src="js/grid.js"></script><!--direccion del archico js-->
+  </body>
+</html>
