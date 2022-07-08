@@ -44,6 +44,8 @@ function seleccionar() {
   });
 }
 
+// https://es.javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave
+
 // var elementoGrid = document.querySelectorAll(".elementoGrid");
 
 // Array.from(elementoGrid).forEach((v) =>
