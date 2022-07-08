@@ -1,5 +1,5 @@
 var gridCont = document.querySelector("#grid-cont");
-var elementoGrid = document.getElementsByClassName("elementoGrid");
+// var elementoGrid = document.querySelectorAll(".elementoGrid");
 var elementoGrid = document.getElementsByClassName("elementoGrid");
 Array.from(elementoGrid).forEach((v) =>
   v.addEventListener("mousedown", function () {
@@ -11,14 +11,15 @@ Array.from(elementoGrid).forEach((v) =>
     v.style.background = "white";
   })
 );
+class colorGrid {}
 
 function mouseDown(elementoGrid) {
   // console.log(elementoGrid)
-  elementoGrid.style.backgroundColor = "yellow";
+  elementoGrid.style.backgroundColor = "white";
 }
 function mouseUp(elementoGrid) {
   // console.log(elementoGrid)
-  elementoGrid.style.backgroundColor = "white";
+  elementoGrid.style.backgroundColor = "green";
 }
 function seleccionar() {
   gridCont.addEventListener("input", seleccionar);
