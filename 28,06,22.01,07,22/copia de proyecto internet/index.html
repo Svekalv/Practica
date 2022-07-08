@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="css/css.css" />
+</head>
+
+<body>
+  <div class="wrapper">
+    <svg width="700" height="500">
+      <g id="grid" transform="translate(100,100)">
+        <rect x="0" y="0" width="500" height="300" />
+        <path class="lines" d="M100,0 v300 M175,0  v300 M325,0  v300 M400,0  v300 M0,100 h500 M0,200 h500" />
+        <text class="textH" y="-15">[1]</text>
+        <text class="textH" x="100" y="-15">[2]</text>
+        <text class="textH" x="175" y="-15">[3]</text>
+        <text class="textH" x="325" y="-15">[4]</text>
+        <text class="textH" x="400" y="-15">[5]</text>
+        <text class="textH" x="500" y="-15">[6]</text>
+
+        <text class="textV" x="-10" y="0">[1]</text>
+        <text class="textV" x="-10" y="100">[2]</text>
+        <text class="textV" x="-10" y="200">[3]</text>
+        <text class="textV" x="-10" y="300">[4]</text>
+      </g>
+    </svg>
+
+    <div id="cuadricula">
+      <div class="item">
+        <p>1</p>
+      </div>
+    </div>
+
+    <div class="output">
+      <div class="controls">
+        <span>grid-column-start:</span>
+        <select id="gridColumnStart" class="grid-column">
+          <option value="1">1</option>
+          <option value="2" selected>2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="-1">-1</option>
+        </select>;<br />
+        <span>grid-column-end:</span>
+        <select id="gridColumnEnd" class="grid-column">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3" selected>3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="-1">-1</option>
+          <option value="span 1">span 1</option>
+          <option value="span 2">span 2</option>
+          <option value="span 3">span 3</option>
+          <option value="span 4">span 4</option>
+          <option value="span 5">span 5</option>
+        </select>;<br />
+        <span>grid-row-start:</span>
+        <select id="gridRowStart" class="grid-row">
+          <option value="1">1</option>
+          <option value="2" selected>2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="-1">-1</option>
+        </select>;<br />
+        <span>grid-row-end:</span>
+        <select id="gridRowEnd" class="grid-row">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3" selected>3</option>
+          <option value="-1">-1</option>
+          <option value="span 1">span 1</option>
+          <option value="span 2">span 2</option>
+          <option value="span 3">span 3</option>
+        </select>;<br />
+      </div>
+      <div class="shorthand">
+        <p>.item{<br /></p>
+
+        <p>grid-column: 2 / 3;</p>
+        <p>grid-row: 2 / 3;</p>
+        <p>}</p>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="js/js.js"></script>
+
+</html>
