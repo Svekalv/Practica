@@ -9,12 +9,14 @@ function function1() {
   var n = 1;
   for (let i = 0; i < columna; i++) {
     for (let x = 0; x < fila; x++) {
-      let flex = document.createElement("div");
+      if (i < 0 ){
+        document.write("valor no aceptable")
+      }else {let flex = document.createElement("div");
       flex.setAttribute("class", "flexElement");
       flex.setAttribute("id", "numero-" + n);
     //   console.log(flex)
       flexCont.append(flex);
-      n++;
+      n++;}
     }
   }
 }
