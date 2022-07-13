@@ -19,7 +19,7 @@ function seleccionar() {
   color();
 }
 function recorrer() {
-  var n = 1;
+  var idCamara = 1;
   var gridItem = document
     .querySelectorAll(".elementoGrid")
     .forEach((elementoGrid) => elementoGrid.remove());
@@ -28,10 +28,12 @@ function recorrer() {
       if (i < 0) {
         document.write("valor no aceptable");
       } else {
-        let grid = document.createElement("div");
-        grid.setAttribute("class", "elementoGrid");
-        grid.setAttribute("id", "numero-" + n);
-        gridCont.append(grid);
+        let camara = document.createElement("div");
+        camara.setAttribute("class", "elementoGrid");
+        camara.setAttribute("id", idCamara);
+        camara.setAttribute("column", i)
+        camara.setAttribute("row", x)
+        gridCont.append(camara);
         n++;
       }
     }
@@ -52,29 +54,31 @@ function selectionArea() {
 function color() {
   var elementoGrid = document.getElementsByClassName("elementoGrid");
   Object.values(elementoGrid).forEach((div) => {
-    div.onmousedown = function () {
+    div.onmousedown = function (e) {
       div.hidden = 0;
       x1 = e.clientX;
       y1 = e.clientY;
       selectionArea();
-      drag = false;
+      // drag = false;
       let ranges = [];
       sel = window.getSelection();
       for (let i = 0; i < sel.rangeCount; i++) {
         ranges[i] = sel.getRangeAt(i);
+        // Array.push(div.id)
       }
       div.style.background = "blue";
       console.log(ranges);
+      // console.log(Array)
     };
-    div.onmousemove = function () {
+    div.onmousemove = function (e) {
       x2 = e.clientX;
       y2 = e.clientY;
       selectionArea();
-      drag = true;
+      // drag = true;
     };
     div.onmouseup = function () {
       div.hidden = 1;
-      console.log(drag ? "drag" : "click");
+      // console.log(drag ? "drag" : "click");
     };
   });
 }
