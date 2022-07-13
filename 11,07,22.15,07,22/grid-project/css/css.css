@@ -21,3 +21,7 @@
   width: 100vw;
   top: 10%; right: 3%; width: 25%; position: fixed
 }
+#select {
+  border: 1px dotted #000;
+  position: absolute;
+}

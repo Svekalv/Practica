@@ -3,7 +3,12 @@ var elementoGrid = document.getElementsByClassName("elementoGrid");
 let drag = false;
 var fila = 2;
 var columna = 2;
-var Array = []
+var Array = [];
+var div = document.getElementById("select"),
+  x1 = 0,
+  y1 = 0,
+  x2 = 0,
+  y2 = 0;
 recorrer();
 color();
 function seleccionar() {
@@ -34,35 +39,52 @@ function recorrer() {
     gridCont.style.gridTemplateRows = "repeat(" + fila + ",1fr)";
   }
 }
-function color(){
+function selectionArea() {
+  var x3 = Math.min(x1, x2);
+  var x4 = Math.max(x1, x2);
+  var y3 = Math.min(y1, y2);
+  var y4 = Math.max(y1, y2);
+  div.style.left = x3 + "px";
+  div.style.top = y3 + "px";
+  div.style.width = x4 - x3 + "px";
+  div.style.height = y4 - y3 + "px";
+}
+function color() {
   var elementoGrid = document.getElementsByClassName("elementoGrid");
   Object.values(elementoGrid).forEach((div) => {
-    
-  div.onmousedown = function (e) {
-    drag = false;
-    Array.push(div.id)
-    div.style.background = "blue";
-    // document.getElementById("experiment").addEventListener('click', click_handler, false);
-    var xCoords = e.movementX;
-    var yCoords = e.movementY;
-    var ubicacion = "X coords => " + xCoords + " ,Y coords = " + yCoords;
-  };
-  div.onmousemove = function () {
-    drag = true;
-    // console.log(ubicacion);
-  };
-  div.onmouseup = function () {
-    console.log(drag ? "drag" : "click");
-    console.log(Array);
-  };
-})
-}  
+    div.onmousedown = function () {
+      div.hidden = 0;
+      x1 = e.clientX;
+      y1 = e.clientY;
+      selectionArea();
+      drag = false;
+      let ranges = [];
+      sel = window.getSelection();
+      for (let i = 0; i < sel.rangeCount; i++) {
+        ranges[i] = sel.getRangeAt(i);
+      }
+      div.style.background = "blue";
+      console.log(ranges);
+    };
+    div.onmousemove = function () {
+      x2 = e.clientX;
+      y2 = e.clientY;
+      selectionArea();
+      drag = true;
+    };
+    div.onmouseup = function () {
+      div.hidden = 1;
+      console.log(drag ? "drag" : "click");
+    };
+  });
+}
+// Array.push(div.id)
 
+// console.log("grilla seleccionada")
 
 // https://es.javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave
 
 // var elementoGrid = document.querySelectorAll(".elementoGrid");
-
 
 // Array.from(elementoGrid).forEach((v) =>
 //   v.addEventListener('mousedown', () => drag = false, function (event) {
