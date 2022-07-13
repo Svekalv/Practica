@@ -19,7 +19,7 @@ function seleccionar() {
   color();
 }
 function recorrer() {
-  var idCamara = 1;
+  var n = 1;
   var gridItem = document
     .querySelectorAll(".elementoGrid")
     .forEach((elementoGrid) => elementoGrid.remove());
@@ -28,12 +28,10 @@ function recorrer() {
       if (i < 0) {
         document.write("valor no aceptable");
       } else {
-        let camara = document.createElement("div");
-        camara.setAttribute("class", "elementoGrid");
-        camara.setAttribute("id", idCamara);
-        camara.setAttribute("column", i)
-        camara.setAttribute("row", x)
-        gridCont.append(camara);
+        let grid = document.createElement("div");
+        grid.setAttribute("class", "elementoGrid");
+        grid.setAttribute("id", "numero-" + n);
+        gridCont.append(grid);
         n++;
       }
     }
@@ -64,11 +62,10 @@ function color() {
       sel = window.getSelection();
       for (let i = 0; i < sel.rangeCount; i++) {
         ranges[i] = sel.getRangeAt(i);
-        // Array.push(div.id)
+        Array.push(div.id)
       }
       div.style.background = "blue";
       console.log(ranges);
-      // console.log(Array)
     };
     div.onmousemove = function (e) {
       x2 = e.clientX;
