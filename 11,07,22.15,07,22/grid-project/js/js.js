@@ -10,6 +10,8 @@ var arrayColumn = new Map();
 var arrayRow = new Map();
 var rowInicial = 0;
 var rowFinal = 0;
+var dragBox = new DragBox().init(document.body[ onmousemoveCallback[ onmouseupCallback [ onmousedownCallback [ context]]]]);
+
 recorrer();
 function seleccionar() {
   columna = document.getElementById("column").value;
@@ -72,13 +74,9 @@ function mouseup(objecto) {
   seleccionGrilla();
 }
 function seleccionGrilla() {
-  console.log("listaCelda: " + Object.values(listaCelda));
-  console.log("listaSeleccionada: " + Object.values(listaSeleccionada));
   for (columnInicial; columnInicial < columnFinal; columnInicial++) {
     for (rowInicial; rowInicial < rowFinal; rowInicial++);
     let difference = Object.values(listaCelda).filter((x) => Object.values(listaSeleccionada).includes(x));
-
-
-    console.log(difference);
   }
 }
+
