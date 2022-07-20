@@ -41,10 +41,6 @@ function recorrer() {
         (listaCelda.id = numeroCamara),
           (listaCelda.column = i),
           (listaCelda.row = x);
-
-        // listaCelda.set("id", numeroCamara);
-        // listaCelda.set("column", i)
-        // listaCelda.set("row", x)
         gridCont.append(camara);
         numeroCamara++;
       }
@@ -58,60 +54,60 @@ function mousedown(objecto) {
   rowInicial = objecto.getAttribute("row");
   arrayColumn.column = columnInicial;
   arrayRow.row = rowInicial;
-  // arrayColumn.set("column ", columnInicial)
-  // // arrayRow.set("row ", rowInicial)
   listaSeleccionada.idinicial = objecto.id;
   listaSeleccionada.columninicial = columnInicial;
   listaSeleccionada.rowinicial = rowInicial;
-
-  // listaSeleccionada.set("idinicial ", objecto.id);
-  // listaSeleccionada.set("columninicial ", columnInicial)
-  // listaSeleccionada.set( "rowinicial ", rowInicial)
-  // console.log(listaSeleccionada)
 }
-
 function mouseup(objecto) {
   columnFinal = objecto.getAttribute("column");
   rowFinal = objecto.getAttribute("row");
   arrayColumn.column = columnFinal;
   arrayRow.row = rowFinal;
-  // arrayColumn.set("column ", columnFinal)
-  // arrayRow.set("row " ,rowFinal)
   listaSeleccionada.idfinal = objecto.id;
   listaSeleccionada.columnfinal = columnFinal;
   listaSeleccionada.rowfinal = rowFinal;
   seleccionGrilla();
 }
 function seleccionGrilla() {
-  for (columnInicial; columnInicial < columnFinal; columnInicial++) {
-    for (rowInicial; rowInicial < rowFinal; rowInicial++);
-    // console.log(listaCelda.get("column"))
-    // console.log(listaSeleccionada)
-    // console.log((listaSeleccionada.get("column")))
-    console.log(listaSeleccionada);
-    let divin = document.getElementById(listaSeleccionada.idinicial);
-    let divfin = document.getElementById(listaSeleccionada.idfinal);
-    let divlado1 = document.getElementById(listaSeleccionada.id);
-    let divlado2 = document.getElementById(listaSeleccionada.id);
-    divin.style.backgroundColor = "blue";
-    divfin.style.backgroundColor = "blue";
-    divlado1.style.backgroundColor = "blue";
-    divlado2.style.backgroundColor = "blue";
-    // if (listaCelda.column == listaSeleccionada.columninicial)
-    // {
-    //   divin.style.backgroundColor = "blue";
-    // }
-    // else if(listaCelda.column == listaSeleccionada.columnfinal)
-    // {
-    //   columnFinal.style.backgroundColor = "blue";
-    // }
-    // else if(listaCelda.row == listaSeleccionada.rowinicial)
-    // {
-    //   divin.style.backgroundColor = "blue";
-    // }
-    // else if(listaCelda.row == listaSeleccionada.rowfinal)
-    // {
-    //   rowFinal.style.backgroundColor = "blue";
-    // }
-  }
+  let arrayColumna = [];
+  let arrayFila = [];
+  Object.values(elementoGrid).forEach((div) => {
+      for (columnInicial; columnInicial < columnFinal; columnInicial++) {
+        arrayColumna.push(div.id);
+        for (rowInicial; rowInicial < rowFinal; rowInicial++);
+        {
+          arrayFila.push(div.id);
+        }
+      }
+      arrayColumna.filter((x) => arrayFila.includes(x)); 
+      div.style.backgroundColor = "blue";
+  });
 }
+
+//   console.log(intersection)
+// }
+
+// let divin = document.getElementById(listaSeleccionada.idinicial);
+// let divfin = document.getElementById(listaSeleccionada.idfinal);
+// let divlado1 = document.getElementById(listaSeleccionada.id);
+// let divlado2 = document.getElementById(listaSeleccionada.id);
+// divin.style.backgroundColor = "blue";
+// divfin.style.backgroundColor = "blue";
+// divlado1.style.backgroundColor = "blue";
+// divlado2.style.backgroundColor = "blue";
+// if (listaCelda.column == listaSeleccionada.columninicial)
+// {
+//   divin.style.backgroundColor = "blue";
+// }
+// else if(listaCelda.column == listaSeleccionada.columnfinal)
+// {
+//   columnFinal.style.backgroundColor = "blue";
+// }
+// else if(listaCelda.row == listaSeleccionada.rowinicial)
+// {
+//   divin.style.backgroundColor = "blue";
+// }
+// else if(listaCelda.row == listaSeleccionada.rowfinal)
+// {
+//   rowFinal.style.backgroundColor = "blue";
+// }
