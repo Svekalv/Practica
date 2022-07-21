@@ -1,4 +1,4 @@
-var dragBox = new DragBox().init(document.body[ onmousemoveCallback[ onmouseupCallback [ onmousedownCallback [ context]]]]);
+// var dragBox = new DragBox().init(document.body[ onmousemoveCallback[ onmouseupCallback [ onmousedownCallback [ context]]]]);
 function DragBox() {
     var _isVisible = false,
         _initPosX = 0,

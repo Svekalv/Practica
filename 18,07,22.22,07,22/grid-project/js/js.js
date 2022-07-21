@@ -25,22 +25,22 @@ function recorrer() {
   for (let i = 0; i < columna; i++) {
     for (let x = 0; x < fila; x++) {
       if (i < 0) {
-        document.write("valor no aceptable");
+        // alert("valor no aceptable");
       } else {
         let camara = document.createElement("div");
         camara.setAttribute("class", "elementoGrid");
         camara.setAttribute("id", numeroCamara);
-        camara.setAttribute("column", i);
-        camara.setAttribute("row", x);
+        camara.setAttribute("column", x);
+        camara.setAttribute("row", i);
         camara.onmousedown = function (event) {
           mousedown(this);
         };
         camara.onmouseup = function (event) {
           mouseup(this);
         };
-        (listaCelda.id = numeroCamara),
-          (listaCelda.column = i),
-          (listaCelda.row = x);
+        // (listaCelda.id = numeroCamara),
+        //   (listaCelda.column = i),
+        //   (listaCelda.row = x);
         gridCont.append(camara);
         numeroCamara++;
       }
@@ -71,43 +71,35 @@ function mouseup(objecto) {
 function seleccionGrilla() {
   let arrayColumna = [];
   let arrayFila = [];
-  Object.values(elementoGrid).forEach((div) => {
-      for (columnInicial; columnInicial < columnFinal; columnInicial++) {
-        arrayColumna.push(div.id);
-        for (rowInicial; rowInicial < rowFinal; rowInicial++);
-        {
-          arrayFila.push(div.id);
-        }
+  let intersection = [];
+  columnInicial = parseInt(columnInicial);
+  columnFinal = parseInt(columnFinal);
+  rowInicial = parseInt(rowInicial);
+  rowFinal = parseInt(rowFinal);
+  console.log("columnInicial " + columnInicial);
+  console.log("columnFinal " + columnFinal);
+  console.log("rowInicial " + rowInicial);
+  console.log("rowFinal " + rowFinal);
+  for (columnInicial; columnInicial <= columnFinal; columnInicial++) {
+    Object.values(elementoGrid).forEach(div => {
+      if (columnInicial == parseInt(div.getAttribute("column"))) {
+        arrayColumna.push(div);
       }
-      arrayColumna.filter((x) => arrayFila.includes(x)); 
-      div.style.backgroundColor = "blue";
+    });
+  }
+  for (rowInicial; rowInicial <= rowFinal; rowInicial++) {
+    Object.values(elementoGrid).forEach(div => {
+      if (rowInicial == parseInt(div.getAttribute("row"))) {
+        arrayFila.push(div);
+      }
+    });
+  }
+  intersection = arrayColumna.filter((x) => arrayFila.includes(x));
+  Object.values(intersection).forEach(div => {
+    div.style.backgroundColor = "blue";
   });
+  //
+  console.log(arrayColumna);
+  console.log(arrayFila);
+  console.log(intersection);
 }
-
-//   console.log(intersection)
-// }
-
-// let divin = document.getElementById(listaSeleccionada.idinicial);
-// let divfin = document.getElementById(listaSeleccionada.idfinal);
-// let divlado1 = document.getElementById(listaSeleccionada.id);
-// let divlado2 = document.getElementById(listaSeleccionada.id);
-// divin.style.backgroundColor = "blue";
-// divfin.style.backgroundColor = "blue";
-// divlado1.style.backgroundColor = "blue";
-// divlado2.style.backgroundColor = "blue";
-// if (listaCelda.column == listaSeleccionada.columninicial)
-// {
-//   divin.style.backgroundColor = "blue";
-// }
-// else if(listaCelda.column == listaSeleccionada.columnfinal)
-// {
-//   columnFinal.style.backgroundColor = "blue";
-// }
-// else if(listaCelda.row == listaSeleccionada.rowinicial)
-// {
-//   divin.style.backgroundColor = "blue";
-// }
-// else if(listaCelda.row == listaSeleccionada.rowfinal)
-// {
-//   rowFinal.style.backgroundColor = "blue";
-// }
