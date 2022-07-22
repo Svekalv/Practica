@@ -25,7 +25,6 @@ function recorrer() {
   for (let i = 0; i < columna; i++) {
     for (let x = 0; x < fila; x++) {
       if (i < 0) {
-        // alert("valor no aceptable");
       } else {
         let camara = document.createElement("div");
         camara.setAttribute("class", "elementoGrid");
@@ -38,9 +37,6 @@ function recorrer() {
         camara.onmouseup = function (event) {
           mouseup(this);
         };
-        // (listaCelda.id = numeroCamara),
-        //   (listaCelda.column = i),
-        //   (listaCelda.row = x);
         gridCont.append(camara);
         numeroCamara++;
       }
@@ -97,8 +93,16 @@ function seleccionGrilla() {
   intersection = arrayColumna.filter((x) => arrayFila.includes(x));
   Object.values(intersection).forEach(div => {
     div.style.backgroundColor = "blue";
+    var valores = div.getAttribute("id")
   });
-  //
+  function crear() {
+    //validacion
+    valores = document.createElement("div")
+    //donde guardar
+
+    //elementos dentro del grid element
+    
+  }
   console.log(arrayColumna);
   console.log(arrayFila);
   console.log(intersection);
