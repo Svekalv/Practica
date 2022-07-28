@@ -95,16 +95,45 @@ function seleccionGrilla() {
     div.style.backgroundColor = "blue";
     var valores = div.getAttribute("id")
   });
-  function crear() {
-    document.querySelector("section.Posicion")
-    valores = document.createElement("div")
+  let createPost = () => {
+    posts.innerHTML += `
+    <div>
+      <p>${data.text}</p>
+      <span class="options">
+        <i onClick="editPost(this)" class="fas fa-edit"></i>
+        <i onClick="deletePost(this)" class="fas fa-trash-alt"></i>
+      </span>
+    </div>
+    `;
+    input.value = "";
+  };
+  let acceptData = () => {
+    // Other codes are here
+  
+    createPost();
+  };
+  let deletePost = (e) => {
+    e.parentElement.parentElement.remove();
+  };
+  let editPost = (e) => {
+    input.value = e.parentElement.previousElementSibling.innerHTML;
+    e.parentElement.parentElement.remove();
+  };
+  let deleteTask = (e) => {
+    e.parentElement.parentElement.remove();
+  
+    data.splice(e.parentElement.parentElement.id, 1);
+  
+    localStorage.setItem("data", JSON.stringify(data));
+  
+    console.log(data);
+  };
     //validacion
-
+    
     //donde guardar
     
     //elementos dentro del grid element
     
-  }
   console.log(arrayColumna);
   console.log(arrayFila);
   console.log(intersection);
