@@ -7,6 +7,8 @@ const { insert, read, update, remove } = require("./js/consulta");
 
 app.use(express.json());
 
+app.use(express.static('./'))
+
 const connection = mysql.createConnection({
     host: process.env.HOST,
     user: process.env.USER,
@@ -20,8 +22,9 @@ connection.connect((err) => {
 })
 
 app.get('/', (req, res) => {
-    res.send("Hello world");
-})
+    res.setHeader('Content-type', 'text/html');
+    res.sendFile('./index.html')
+})  
 
 app.get('/insert', (req, res) => {
     insert(connection, (result) =>{
