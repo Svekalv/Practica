@@ -11,6 +11,7 @@ var arrayRow = {};
 var rowInicial = 0;
 var rowFinal = 0;
 
+
 recorrer();
 function seleccionar() {
   columna = document.getElementById("column").value;
@@ -95,7 +96,38 @@ function seleccionGrilla() {
     div.style.backgroundColor = "blue";
     var valores = div.getAttribute("id")
   });
+
   console.log(arrayColumna);
   console.log(arrayFila);
   console.log(intersection);
+}
+
+function guardar() {
+  let nombre = document.getElementById("nombre").value;
+  // let columna = parseInt(columna);
+  // let fila = parseInt(fila);
+  let capacidad = parseInt(columna) * parseInt(fila);
+  let ruta = "ruta";
+  const registro = {
+    nombre,
+    columna,
+    fila,
+    capacidad,
+    ruta
+  }
+  let mensaje = JSON.stringify(registro)
+  console.log(mensaje)
+  // https://www.youtube.com/watch?v=G-j5SI7Qitk
+  
+  
+  fetch('/guardar', {
+    method: 'POST',
+    body: JSON.stringify(registro),
+    headers: {
+      "Content-type": "application/json"
+    }
+  })
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
 }

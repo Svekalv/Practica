@@ -1,3 +1,5 @@
+// const bodyParser = require('body-parser');
+const { json } = require('body-parser');
 const express = require('express');
 const app = express();
 const mysql = require("mysql");
@@ -7,7 +9,9 @@ const { insert, read, update, remove } = require("./js/consulta");
 
 app.use(express.json());
 
-app.use(express.static('./'))
+app.use(express.static('./'));
+
+// app.use(bodyParser.json());
 
 const connection = mysql.createConnection({
     host: process.env.HOST,
@@ -25,11 +29,12 @@ app.get('/', (req, res) => {
     res.setHeader('Content-type', 'text/html');
     res.sendFile('./index.html')
 })  
-
-app.get('/insert', (req, res) => {
-    insert(connection, (result) =>{
+app.post('/guardar', (req, res) => {
+    var string = req.body
+    console.log(string)
+    insert(connection, string, (result)=> {
         res.json(result);
-    });
+    })
 })
 
 app.get('/read', (req, res) => {

@@ -1,14 +1,39 @@
 const mysql = require("mysql");
 
+
+
+// function insert (con, nombre , columna , fila , capacidad, ruta){
+//   var _nombre = nombre.data
+// console.log(_nombre)
+// con.connect(function(err) {
+//   if (err) throw err;
+//   console.log("Connected!");
+//   var sql = "INSERT INTO grilla (nombre, columna, fila, capacidad, ruta) VALUES ('"+ nombre +"', ''"+ columna +"'', ''"+ fila +"'', ''"+ capacidad +"'', ''"+ ruta +"'')";
+//   con.query(sql, function (err, result) {
+//     if (err) throw err;
+//     console.log("1 record inserted");
+//   });
+// });
+// }
+
+
+
+
+
+
+
+
+
 function insert(connection, data, callback) {
+  console.log('metodo guardar ' + data.nombre)
   let insertQuery =
-    "INSERT INTO grilla (nombre, columna, fila, capacidad, ruta) VALUES ('?', '?', '?', '?', '?')";
+    "INSERT INTO grilla (nombre, columna, fila, capacidad, ruta) VALUES (?, ?, ?, ?, ?)";
   let query = mysql.format(insertQuery, [
     data.nombre,
     data.columna,
     data.fila,
     data.capacidad,
-    data.ruta,
+    data.ruta
   ]);
   connection.query(query, function (err, result) {
     if (err) throw err;
