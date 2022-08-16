@@ -3,7 +3,7 @@ var elementoGrid = document.getElementsByClassName("elementoGrid");
 var textnombre =  document.getElementById("nombre")
 var inputcolumn =  document.getElementById("column")
 var inputrow =  document.getElementById("row")
-var id = 0;
+var id;
 var nombre;
 var columna;
 var fila;
@@ -122,23 +122,22 @@ function seleccionGrilla() {
 }
 
 
-function guardar() {
+function actualizar() {
   let nombre = document.getElementById("nombre").value;
-  // let columna = parseInt(columna);
-  // let fila = parseInt(fila);
+  columna = document.getElementById("column").value
+  fila = document.getElementById("row").value
   let capacidad = parseInt(columna) * parseInt(fila);
   let ruta = "../css/grilla/" + nombre + ".css";
   const registro = {
-    nombre,
     columna,
     fila,
     capacidad,
-    ruta
+    id
   }
   let mensaje = JSON.stringify(registro)
-  console.log(mensaje)
+  console.log(registro)
   
-  fetch('/guardar', {
+  fetch('/update', {
     method: 'POST',
     body: JSON.stringify(registro),
     headers: {

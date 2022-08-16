@@ -120,7 +120,6 @@ function guardar() {
   console.log(mensaje)
   // https://www.youtube.com/watch?v=G-j5SI7Qitk
   
-  
   fetch('/guardar', {
     method: 'POST',
     body: JSON.stringify(registro),

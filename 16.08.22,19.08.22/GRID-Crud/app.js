@@ -45,8 +45,9 @@ app.get('/read', (req, res) => {
     });
 })
 
-app.get('/update', (req, res) => {
-    update(connection, {id:1}, (result) =>{
+app.post('/update', (req, res) => {
+    var datos = req.body
+    update(connection, datos, (result) =>{
         res.json(result);
     });
 })

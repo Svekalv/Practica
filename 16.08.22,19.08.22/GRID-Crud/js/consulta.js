@@ -64,6 +64,7 @@ function update(connection, data, callback) {
     data.columna,
     data.fila,
     data.capacidad,
+    data.id
   ]);
   
   connection.query(query, function (err, result) {
