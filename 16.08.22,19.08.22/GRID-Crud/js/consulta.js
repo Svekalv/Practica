@@ -1,4 +1,5 @@
 const mysql = require("mysql");
+var fs = require('fs')
 var css;
 var columna;
 var fila;
@@ -20,20 +21,24 @@ fila = data.fila;
     if (err) throw err;
     callback(result);
   });
-  // css = `
-  // #grid-cont {
-  //   display: grid;
-  //   height: 70vh;
-  //   width: 70vw;
-  //   background-color: white;
-  //   border: solid black;
-  //   grid-template-columns: repeat(`+ columna +`, 1fr);
-  //   grid-template-rows: repeat(`+ fila +`, 1fr);
-  //   grid-auto-flow: row;
-  //   grid-auto-rows: auto;
-  // }
-  // `
-  // let blob = new Blob([css], {type: 'text/css'});
+  css = `#grid-cont {
+    display: grid;
+    height: 70vh;
+    width: 70vw;
+    background-color: white;
+    border: solid black;
+    grid-template-columns: repeat(`+ columna +`, 1fr);
+    grid-template-rows: repeat(`+ fila +`, 1fr);
+    grid-auto-flow: row;
+    grid-auto-rows: auto;
+  }
+  `
+  fs.appendFile('css/grilla/' + data.nombre + '.css',css, function (err) {
+    if (err) {
+      console.log("error al guardar" + err)
+    } else {
+    }
+  })
 }
 
 function read(connection, callback) {
@@ -54,20 +59,24 @@ function buscarGrilla(connection, data, callback) {
 }
 
 function update(connection, data, callback) {
-  const randomLetters = Math.random().toString(36).substring(7);
-  const newRuta = "${randomLetters}";
-  let updateQuery = "UPDATE grilla SET ruta = ? WHERE id = ?";
-  let query = mysql.format(updateQuery, [newRuta, data.id]);
+  let updateQuery = "UPDATE `grilla` SET `columna`= ? ,`fila`= ?,`capacidad`= ? WHERE id = ?";
+  let query = mysql.format(updateQuery, [
+    data.columna,
+    data.fila,
+    data.capacidad,
+  ]);
+  
   connection.query(query, function (err, result) {
     if (err) throw err;
     callback(result);
   });
 }
 
-function remove(connection, data, callback) {
+function remove(c, data, callback) {
+  console.log("funciona" + data)
     let removeQuery = "DELETE FROM grilla WHERE id = ?";
     let query = mysql.format(removeQuery, [data.id]);
-    connection.query(query, function (err, result) {
+    c.query(query, function (err, result) {
       if (err) throw err;
       callback(result);
     });

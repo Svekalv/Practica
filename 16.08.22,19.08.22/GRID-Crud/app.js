@@ -52,9 +52,10 @@ app.get('/update', (req, res) => {
 })
 
 app.post('/remove', (req, res) => {
-    var idx = req.body
-    console.log(idx)
-    remove(connection, idx, (result) =>{
+    
+    var id =  req.body
+    console.log("inicio remove " + req)
+    remove(connection, id, (result) =>{
         res.json(result);
     });
 })

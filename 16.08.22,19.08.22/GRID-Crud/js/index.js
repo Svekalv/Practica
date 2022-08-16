@@ -29,10 +29,15 @@ function inicio () {
   );
 }
 function eliminar(id){
+  console.log(id)
   const registro = {id};
   const trow = document.getElementById("tr-" + id)
     fetch('/remove', {
       method: 'POST',
+      body: JSON.stringify(registro),
+      headers: {
+      "Content-type": "application/json"
+      }
     })
     trow.remove();
   }
