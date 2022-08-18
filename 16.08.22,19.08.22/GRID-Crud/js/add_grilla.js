@@ -10,7 +10,7 @@ var arrayColumn = {};
 var arrayRow = {};
 var rowInicial = 0;
 var rowFinal = 0;
-
+var nombre;
 
 recorrer();
 
@@ -79,23 +79,23 @@ function seleccionGrilla() {
   console.log("rowInicial " + rowInicial);
   console.log("rowFinal " + rowFinal);
   for (columnInicial; columnInicial <= columnFinal; columnInicial++) {
-    Object.values(elementoGrid).forEach(div => {
+    Object.values(elementoGrid).forEach((div) => {
       if (columnInicial == parseInt(div.getAttribute("column"))) {
         arrayColumna.push(div);
       }
     });
   }
   for (rowInicial; rowInicial <= rowFinal; rowInicial++) {
-    Object.values(elementoGrid).forEach(div => {
+    Object.values(elementoGrid).forEach((div) => {
       if (rowInicial == parseInt(div.getAttribute("row"))) {
         arrayFila.push(div);
       }
     });
   }
   intersection = arrayColumna.filter((x) => arrayFila.includes(x));
-  Object.values(intersection).forEach(div => {
+  Object.values(intersection).forEach((div) => {
     div.style.backgroundColor = "blue";
-    var valores = div.getAttribute("id")
+    var valores = div.getAttribute("id");
   });
 
   console.log(arrayColumna);
@@ -103,8 +103,35 @@ function seleccionGrilla() {
   console.log(intersection);
 }
 
+function verificarNombre() {
+  fetch("/read", {
+    method: "GET",
+  })
+    .then((r) => r.json().then((data) => ({ status: r.status, body: data })))
+    .then((obj) =>
+      Object.values(obj.body).forEach((datos) => {
+        let nombreRegistrado = datos.nombre;
+        console.log(nombreRegistrado)
+        nombre = document.getElementById("nombre").value;
+        if (nombre == nombreRegistrado) {
+          Swal.fire({
+            title: "ERROR",
+            text: "Nombre ya registrado",
+            icon: "error",
+          }).then((resultado) => {
+            if (resultado.value) {
+              nombre = "";
+            }
+          });
+        } else {
+          guardar();
+        }
+      })
+    );
+}
+
 function guardar() {
-  let nombre = document.getElementById("nombre").value;
+  nombre = document.getElementById("nombre").value;
   // let columna = parseInt(columna);
   // let fila = parseInt(fila);
   let capacidad = parseInt(columna) * parseInt(fila);
@@ -114,20 +141,25 @@ function guardar() {
     columna,
     fila,
     capacidad,
-    ruta
-  }
-  let mensaje = JSON.stringify(registro)
-  console.log(mensaje)
-  // https://www.youtube.com/watch?v=G-j5SI7Qitk
-  
-  fetch('/guardar', {
-    method: 'POST',
+    ruta,
+  };
+  let mensaje = JSON.stringify(registro);
+  console.log(mensaje);
+  Swal.fire({
+    text: "Nueva grilla registrada",
+    icon: "success",
+  }).then(function () {
+    window.location = "/index.html";
+  });
+
+  fetch("/guardar", {
+    method: "POST",
     body: JSON.stringify(registro),
     headers: {
-      "Content-type": "application/json"
-    }
+      "Content-type": "application/json",
+    },
   })
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .catch(error => console.log(error))
+    .then((res) => res.json())
+    .then((data) => console.log(data))
+    .catch((error) => console.log(error));
 }
