@@ -11,6 +11,7 @@ var arrayRow = {};
 var rowInicial = 0;
 var rowFinal = 0;
 var nombre;
+var validador = 0;
 
 recorrer();
 
@@ -96,7 +97,10 @@ function seleccionGrilla() {
   Object.values(intersection).forEach((div) => {
     div.style.backgroundColor = "blue";
     var valores = div.getAttribute("id");
-  });
+  })
+
+  var claseDiv = columnInicial, columnFinal, rowInicial, rowFinal;
+  console.log(claseDiv)
 
   console.log(arrayColumna);
   console.log(arrayFila);
@@ -107,30 +111,33 @@ function verificarNombre() {
   fetch("/read", {
     method: "GET",
   })
-    .then((r) => r.json().then((data) => ({ status: r.status, body: data })))
-    .then((obj) =>
-      Object.values(obj.body).forEach((datos) => {
-        let nombreRegistrado = datos.nombre;
-        console.log(nombreRegistrado)
-        nombre = document.getElementById("nombre").value;
-        if (nombre == nombreRegistrado) {
+    .then((response) => response.json())
+    .then((json) => {
+      if (json.length === 0) {
+        guardar();
+      } else {
+        json.forEach((obj) => {
+          nombre = document.getElementById("nombre").value;
+          validador = nombre.localeCompare(obj.nombre);
+          if (validador === 0) {
+            return;
+          }
+        });
+        if (validador === 0) {
           Swal.fire({
             title: "ERROR",
             text: "Nombre ya registrado",
             icon: "error",
-          }).then((resultado) => {
-            if (resultado.value) {
-              nombre = "";
-            }
           });
         } else {
           guardar();
         }
-      })
-    );
+      }
+    });
 }
 
 function guardar() {
+  // console.log(columnInicial)
   nombre = document.getElementById("nombre").value;
   // let columna = parseInt(columna);
   // let fila = parseInt(fila);
@@ -142,6 +149,10 @@ function guardar() {
     fila,
     capacidad,
     ruta,
+    // columnInicial,
+    // columnFinal,
+    // rowInicial,
+    // rowFinal,
   };
   let mensaje = JSON.stringify(registro);
   console.log(mensaje);

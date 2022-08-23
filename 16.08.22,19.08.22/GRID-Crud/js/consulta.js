@@ -13,7 +13,13 @@ function insert(connection, data, callback) {
     data.columna,
     data.fila,
     data.capacidad,
-    data.ruta
+    data.ruta,
+    // , columnInicial, columnFinal, rowInicial, rowFinal
+    // , ?, ?, ?, ?
+    // data.columnInicial,
+    // data.columnFinal,
+    // data.rowInicial,
+    // data.rowFinal
   ]);
 columna = data.columna;
 fila = data.fila;

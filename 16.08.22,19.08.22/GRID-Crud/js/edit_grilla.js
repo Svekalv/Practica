@@ -27,6 +27,10 @@ function buscarGrilla() {
   nombre = datos[1];
   columna = datos[2];
   fila = datos[3];
+  // columnInicial = datos[4]
+  // columnFinal = datos[5]
+  // rowInicial = datos[6]
+  // rowFinal = datos[7]
   textnombre.value = nombre;
   inputcolumn.value = columna;
   inputrow.value = fila;
