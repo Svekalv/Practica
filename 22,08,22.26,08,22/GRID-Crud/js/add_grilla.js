@@ -95,10 +95,12 @@ function seleccionGrilla() {
   }
   intersection = arrayColumna.filter((x) => arrayFila.includes(x));
   Object.values(intersection).forEach((div) => {
+    console.log(div)
     div.style.backgroundColor = "blue";
     var valores = div.getAttribute("id");
-    // var element = document.getElementById("myDIV");
-    valores.classList.add("seleccion");
+    // // var element = document.getElementById("myDIV");
+    // valores.classList.add("seleccion");
+
   });
 
   // var claseDiv = 
